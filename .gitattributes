@@ -1,0 +1,14 @@
+# Line endings: on machines with core.autocrlf=true (e.g. Windows) a checkout would
+# rewrite these files with CRLF, which breaks `build.sh` on macOS (bad interpreter)
+# and rewrites Info.plist — a file hashed by codesign — invalidating the bundle's signature.
+# 行尾保护：core.autocrlf=true 时检出会转成 CRLF，将使 build.sh 在 macOS 上无法执行，并破坏 App 签名。
+*.sh            text eol=lf
+*.swift         text eol=lf
+*.md            text eol=lf
+
+# 构建产物按二进制处理，字节保持原样
+*.plist         -text
+CodeResources   -text
+*.icns          binary
+*.png           binary
+MouseHighlighter binary
